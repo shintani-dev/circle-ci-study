@@ -7,7 +7,15 @@ orbs:
   ruby: circleci/ruby@1.1.2
 
 jobs:
-  echo-ruby:
+  echo-ruby-stg:
+    docker:
+      - image: "cimg/base:stable"
+    steps:
+      - ruby/install:
+          version: "2.6.6"
+      - run: ruby --version
+
+  echo-ruby-prod:
     docker:
       - image: "cimg/base:stable"
     steps:
@@ -22,6 +30,15 @@ workflows:
     # Run the welcome/run job in its own container
     jobs:
       - welcome/run
-  echo-ruby:
+  echo-ruby-stg:
     jobs:
-      - echo-ruby
+      - echo-ruby-stg
+    filters:
+      branches:
+        only: develop
+  echo-ruby-prod:
+    jobs:
+      - echo-ruby-prod
+    filters:
+      branches:
+        only: master
