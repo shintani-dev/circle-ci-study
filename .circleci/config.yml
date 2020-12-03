@@ -4,6 +4,17 @@ version: 2.1
 orbs:
   # Declare a dependency on the welcome-orb
   welcome: circleci/welcome-orb@0.4.1
+  ruby: circleci/ruby@1.1.2
+
+jobs:
+  echo-ruby:
+    docker:
+      - image: "cimg/base:stable"
+    steps:
+      - ruby/install:
+          version: "2.7.2"
+      - run: ruby --version
+
 # Orchestrate or schedule a set of jobs
 workflows:
   # Name the workflow "welcome"
@@ -11,3 +22,6 @@ workflows:
     # Run the welcome/run job in its own container
     jobs:
       - welcome/run
+  echo-ruby:
+    jobs:
+      - echo-ruby
