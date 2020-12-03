@@ -28,17 +28,16 @@ workflows:
   # Name the workflow "welcome"
   welcome:
     # Run the welcome/run job in its own container
-    jobs:
-      - welcome/run
+    jobs: welcome/run
   echo-ruby-stg:
     jobs:
-      - echo-ruby-stg
-    filters:
-      branches:
-        only: develop
+      echo-ruby-stg:
+        filters:
+          branches:
+            only: develop
   echo-ruby-prod:
     jobs:
-      - echo-ruby-prod
-    filters:
-      branches:
-        only: master
+      echo-ruby-prod:
+        filters:
+          branches:
+            only: master
