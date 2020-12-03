@@ -4,11 +4,6 @@
 
 CircleCI をいろいろ試す
 
-## やること
-
-- workflows の理解
-- orbs ってなに
-
 ## 積み上げ
 
 [![積み上げ](https://img.shields.io/badge/積み上げ-docs-brightgreen)](/docs)
