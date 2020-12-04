@@ -6,18 +6,6 @@ orbs:
   welcome: circleci/welcome-orb@0.4.1
 
 jobs:
-  check-tag:
-    docker:
-      - image: "cimg/base:stable"
-    steps:
-      - run: echo 'check-tag!'
-
-  check-branch:
-    docker:
-      - image: "cimg/base:stable"
-    steps:
-      - run: echo 'check-branch!'
-
   echo-stg:
     docker:
       - image: "cimg/base:stable"
@@ -49,18 +37,9 @@ workflows:
 
   prod:
     jobs:
-      - check-tag:
+      - echo-prod:
           filters:
             branches:
               ignore: /.*/
             tags:
               only: /^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/
-      - check-branch:
-          requires:
-            - check-tag
-          filters:
-            branches:
-              only: master
-      - echo-prod:
-          requires:
-            - check-branch
