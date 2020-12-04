@@ -35,10 +35,12 @@ workflows:
   echo-ruby-stg:
     jobs:
       - echo-ruby-stg:
-        branches:
-          only: develop
+          filters:
+            branches:
+              only: develop
   echo-ruby-prod:
     jobs:
       - echo-ruby-prod:
-        branches:
-          only: master
+          filters:
+            branches:
+              only: master
