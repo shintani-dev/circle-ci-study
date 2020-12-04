@@ -39,7 +39,8 @@ workflows:
       - echo-stg:
           filters:
             branches:
-              only: develop
+              # only: develop
+              ignore: /.*/ # deploy-stgが動かないのを確認
       - deploy-stg:
           requires:
             - echo-stg
