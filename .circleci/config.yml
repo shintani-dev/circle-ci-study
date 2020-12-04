@@ -4,24 +4,19 @@ version: 2.1
 orbs:
   # Declare a dependency on the welcome-orb
   welcome: circleci/welcome-orb@0.4.1
-  ruby: circleci/ruby@1.1.2
 
 jobs:
-  echo-ruby-stg:
+  echo-stg:
     docker:
       - image: "cimg/base:stable"
     steps:
-      - ruby/install:
-          version: "2.6.6"
-      - run: ruby --version
+      - run: echo 'staging!'
 
-  echo-ruby-prod:
+  echo-prod:
     docker:
       - image: "cimg/base:stable"
     steps:
-      - ruby/install:
-          version: "2.7.2"
-      - run: ruby --version
+      - run: echo 'production!'
 
 # Orchestrate or schedule a set of jobs
 workflows:
@@ -32,15 +27,19 @@ workflows:
     # Run the welcome/run job in its own container
     jobs:
       - welcome/run
-  echo-ruby-stg:
+
+  stg:
     jobs:
-      - echo-ruby-stg:
+      - echo-stg:
           filters:
             branches:
               only: develop
-  echo-ruby-prod:
+
+  prod:
     jobs:
-      - echo-ruby-prod:
+      - echo-prod:
           filters:
             branches:
               only: master
+            tags:
+              only: /^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/
