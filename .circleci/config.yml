@@ -12,6 +12,12 @@ jobs:
     steps:
       - run: echo 'staging!'
 
+  deploy-stg:
+    docker:
+      - image: "cimg/base:stable"
+    steps:
+      - run: echo 'deploy staging!'
+
   echo-prod:
     docker:
       - image: "cimg/base:stable"
@@ -34,6 +40,9 @@ workflows:
           filters:
             branches:
               only: develop
+      - deploy-stg:
+          requires:
+            - echo-stg
 
   prod:
     jobs:
