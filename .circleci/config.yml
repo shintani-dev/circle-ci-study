@@ -10,13 +10,13 @@ jobs:
     docker:
       - image: "cimg/base:stable"
     steps:
-      - echo 'check-tag!'
+      - run: echo 'check-tag!'
 
   check-branch:
     docker:
       - image: "cimg/base:stable"
     steps:
-      - echo 'check-branch!'
+      - run: echo 'check-branch!'
 
   echo-stg:
     docker:
