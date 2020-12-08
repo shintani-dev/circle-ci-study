@@ -5,24 +5,37 @@ orbs:
   # Declare a dependency on the welcome-orb
   welcome: circleci/welcome-orb@0.4.1
 
+commands:
+  echo:
+    description: "echoするよ"
+    parameters:
+      message:
+        type: string
+        default: "default!"
+    steps:
+      - run: echo <<parameters.message>>
+
 jobs:
   echo-stg:
     docker:
       - image: "cimg/base:stable"
     steps:
-      - run: echo 'staging!'
+      - echo:
+          message: "staging!"
 
   deploy-stg:
     docker:
       - image: "cimg/base:stable"
     steps:
-      - run: echo 'deploy staging!'
+      - echo:
+          message: "deploy staging!"
 
   echo-prod:
     docker:
       - image: "cimg/base:stable"
     steps:
-      - run: echo 'production!'
+      - echo:
+          message: "production!"
 
 # Orchestrate or schedule a set of jobs
 workflows:
