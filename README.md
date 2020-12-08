@@ -1,6 +1,6 @@
 # circle-ci-study
 
-[![CircleCI](https://circleci.com/gh/shintani-dev/circle-ci-study/tree/master.svg?style=svg)](https://circleci.com/gh/shintani-dev/circle-ci-study/tree/master)
+[![CircleCI](https://circleci.com/gh/shintani-dev/circle-ci-study.svg?style=svg)](https://circleci.com/gh/shintani-dev/circle-ci-study)
 
 CircleCI をいろいろ試す
 
