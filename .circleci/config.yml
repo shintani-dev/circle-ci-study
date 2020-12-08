@@ -52,11 +52,15 @@ workflows:
       - echo-stg:
           filters:
             branches:
-              # only: develop
-              ignore: /.*/ # deploy-stgが動かないのを確認
+              #only: develop
+              # ignore: /.*/ # deploy-stgが動かないのを確認
       - deploy-stg:
           requires:
             - echo-stg
+      - echo:
+          requires:
+            - deploy-stg
+          message: "workflowの方でも使えるか試す"
 
   prod:
     jobs:
